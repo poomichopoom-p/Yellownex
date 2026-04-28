@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import ChatBar from "./Components/ChatBar.jsx";import "./App.css";
+
 
 function App() {
   // 1. เก็บลิสต์หน้าต่างแชทที่เปิดอยู่
@@ -53,8 +55,15 @@ function App() {
   };
 
   return (
+
     <div className="app-container">
       {/* ส่วนเนื้อหาหลักของเว็บ (ถ้ามี) */}
+
+    </div>
+      <div className="flex justify-center gap-6 p-6">
+        <SuggestedPeople />
+      </div>
+
       <section id="center">
         <h1>Hackathon Project</h1>
         <p>ลองคลิกที่แถบ Messaging ขวาล่างเพื่อเริ่มแชท!</p>
@@ -108,4 +117,16 @@ function App() {
   );
 }
 
-export default App;
+
+
+
+function MainFeed() {
+  return (
+    <div className="middle-column">
+      <StartPost />
+
+    </div>
+  )
+}
+
+export default App
