@@ -4,13 +4,11 @@
 // import postsData from "../mockData.js/postsData";
 import { useState } from "react";
 
-<<<<<<< HEAD
-const CommentSection = ({ comments }) => {
-=======
+
 
 
 const CommentSection = ({ postId, comments }) => {
->>>>>>> d4673fd (No_config2)
+
   const [newComment, setNewComment] = useState("");
   const [commentList, setCommentList] = useState(comments || []);
 
