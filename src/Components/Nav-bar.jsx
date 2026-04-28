@@ -1,39 +1,42 @@
-import React from 'react';
-import { 
-  Home, 
-  Users, 
-  Briefcase, 
-  MessageSquare, 
-  Bell, 
-  UserCircle, 
-  Grid, 
+import {
+  Home,
+  Users,
+  Briefcase,
+  MessageSquare,
+  Bell,
+  UserCircle,
+  Grid,
   Search,
-  ChevronDown
-} from 'lucide-react';
+  ChevronDown,
+} from "lucide-react";
 
 const Navbar = () => {
   const navItems = [
-    { icon: <Home size={24} />, label: 'หน้าแรก', active: true },
-    { icon: <Users size={24} />, label: 'เครือข่ายของฉัน', active: false },
-    { icon: <Briefcase size={24} />, label: 'งาน', active: false },
-    { icon: <MessageSquare size={24} />, label: 'ข้อความ', active: false },
-    { icon: <Bell size={24} />, label: 'การแจ้งเตือน', active: false, badge: 1 },
+    { icon: <Home size={24} />, label: "หน้าแรก", active: true },
+    { icon: <Users size={24} />, label: "เครือข่ายของฉัน", active: false },
+    { icon: <Briefcase size={24} />, label: "งาน", active: false },
+    { icon: <MessageSquare size={24} />, label: "ข้อความ", active: false },
+    {
+      icon: <Bell size={24} />,
+      label: "การแจ้งเตือน",
+      active: false,
+      badge: 1,
+    },
   ];
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 w-full px-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between h-14">
-        
         {/* Left Side: Logo and Search */}
         <div className="flex items-center gap-2 flex-1">
           {/* Logo with Sora Font */}
-          <div 
-            className="font-bold text-3xl mr-4 select-none" 
-            style={{ color: '#FFBE00', fontFamily: "'Sora', sans-serif" }}
+          <div
+            className="font-bold text-3xl mr-4 select-none"
+            style={{ color: "#FFBE00", fontFamily: "'Sora', sans-serif" }}
           >
             YellowNex
           </div>
-          
+
           {/* Search Input */}
           <div className="relative max-w-[280px] w-full hidden md:block">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -50,10 +53,10 @@ const Navbar = () => {
         {/* Right Side: Navigation Buttons */}
         <div className="flex items-center h-full">
           {navItems.map((item, index) => (
-            <button 
-              key={index} 
+            <button
+              key={index}
               className={`flex flex-col items-center justify-center h-full min-w-[80px] transition-colors relative group
-                ${item.active ? 'text-black border-b-2 border-black' : 'text-gray-500 hover:text-black'}`}
+                ${item.active ? "text-black border-b-2 border-black" : "text-gray-500 hover:text-black"}`}
             >
               <div className="relative mt-1">
                 {item.icon}
@@ -63,7 +66,9 @@ const Navbar = () => {
                   </span>
                 )}
               </div>
-              <span className="text-[12px] mt-0.5 font-light">{item.label}</span>
+              <span className="text-[12px] mt-0.5 font-light">
+                {item.label}
+              </span>
             </button>
           ))}
 
@@ -85,13 +90,12 @@ const Navbar = () => {
                 <ChevronDown size={14} />
               </div>
             </button>
-            
+
             <button className="text-[12px] text-amber-700 underline text-center leading-tight hover:text-amber-900 max-w-[100px] font-medium">
               ลองใช้ Premium ในราคา ฿0
             </button>
           </div>
         </div>
-
       </div>
     </nav>
   );

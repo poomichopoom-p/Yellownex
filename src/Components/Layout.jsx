@@ -1,7 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 import SideBar from "./SideBar.jsx";
 import ChatBar from "./ChatBar.jsx";
+import SuggestedPeople from "./SuggestedPeople.jsx";
 import { useState } from "react";
+import { contactsData } from "../data/mockData.js";
 
 export default function Layout() {
   const [activeChats, setActiveChats] = useState([]);
@@ -10,24 +12,8 @@ export default function Layout() {
     2: [{ text: "See you later!", type: "inbound" }],
   });
 
-  const contacts = [
-    {
-      id: 1,
-      name: "Melissa Torres",
-      role: "LinkedIn Offer",
-      lastMsg: "Update your job...",
-      lastTime: "11:15 AM",
-      online: true,
-    },
-    {
-      id: 2,
-      name: "CK Cheong",
-      role: "CEO @ Fastwork",
-      lastMsg: "See you later!",
-      lastTime: "Yesterday",
-      online: false,
-    },
-  ];
+  // ใช้ข้อมูลจาก mockData
+  const contacts = contactsData;
 
   const openChat = (user) => {
     if (!activeChats.find((c) => c.id === user.id)) {
@@ -48,108 +34,100 @@ export default function Layout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-black">
       {/* Navigation Bar */}
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-14">
-            <div className="flex items-center gap-4">
-              <Link to="/" className="text-2xl font-bold text-blue-600">
-                Linked
-              </Link>
+      <nav className="bg-[#1a1a1a] border-b border-gray-800 sticky top-0 z-50 shadow-md">
+        <div className="max-w-[1128px] mx-auto px-4 flex justify-between items-center h-[52px]">
+          <div className="flex items-center gap-2 flex-1">
+            <Link to="/" className="text-white hover:opacity-90">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM9.5 17.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM15 17.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.5 8.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM15 8.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+              </svg>
+            </Link>
+            <div className="relative group">
               <input
                 type="text"
                 placeholder="ค้นหา"
-                className="bg-gray-100 rounded-md px-4 py-2 w-64 hidden md:block"
+                className="bg-[#333333] text-white rounded-md px-4 py-1.5 w-64 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-gray-600"
               />
             </div>
-            <div className="flex items-center gap-6">
-              <Link to="/" className="text-gray-600 hover:text-gray-900">
-                หน้าหลัก
-              </Link>
-              <Link
-                to="/messages"
-                className="text-gray-600 hover:text-gray-900"
-              >
-                ข้อความ
-              </Link>
-              <Link to="/profile" className="text-gray-600 hover:text-gray-900">
-                โปรไฟล์
-              </Link>
-            </div>
+          </div>
+          <div className="flex items-center gap-8 h-full">
+            <Link to="/" className="flex flex-col items-center text-gray-400 hover:text-white transition-colors text-xs border-b-2 border-white h-full justify-center px-2">
+              <span className="text-xl">🏠</span>
+              <span className="hidden md:block">หน้าหลัก</span>
+            </Link>
+            <Link to="/network" className="flex flex-col items-center text-gray-400 hover:text-white transition-colors text-xs h-full justify-center px-2">
+              <span className="text-xl">👥</span>
+              <span className="hidden md:block">เครือข่าย</span>
+            </Link>
+            <Link to="/messages" className="flex flex-col items-center text-gray-400 hover:text-white transition-colors text-xs h-full justify-center px-2">
+              <span className="text-xl">💬</span>
+              <span className="hidden md:block">ข้อความ</span>
+            </Link>
+            <Link to="/profile" className="flex flex-col items-center text-gray-400 hover:text-white transition-colors text-xs h-full justify-center px-2">
+              <span className="text-xl">👤</span>
+              <span className="hidden md:block">โปรไฟล์</span>
+            </Link>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto py-6 px-4">
-        <div className="flex gap-6">
+      <div className="max-w-[1128px] mx-auto py-6 px-4">
+        <div className="flex flex-col md:flex-row gap-6">
           {/* Sidebar - Left */}
-          <div className="hidden md:block w-1/4">
+          <div className="w-full md:w-[225px] flex-shrink-0">
             <SideBar />
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <Outlet />
           </div>
 
           {/* Sidebar - Right (Suggested People) */}
-          <div className="hidden lg:block w-1/4">
-            <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-              <h3 className="font-semibold text-gray-800 mb-4">
-                คนที่คุณอาจรู้จัก
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-                  <div>
-                    <p className="font-semibold text-sm">สมชาย ใจดี</p>
-                    <p className="text-xs text-gray-500">
-                      Full Stack Developer
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-                  <div>
-                    <p className="font-semibold text-sm">วิชัย รักเรียน</p>
-                    <p className="text-xs text-gray-500">UX Designer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="hidden lg:block w-[300px] flex-shrink-0">
+            <SuggestedPeople />
           </div>
         </div>
       </div>
 
       {/* Messaging System */}
-      <div className="messaging-container">
+      <div className="fixed bottom-0 right-5 flex items-end gap-3 z-50">
         {activeChats.map((chat) => (
-          <div key={chat.id} className="chat-window">
-            <div className="chat-header">
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "5px" }}
-              >
-                <span style={{ fontWeight: "bold", fontSize: "14px" }}>
+          <div key={chat.id} className="w-72 h-[400px] bg-[#1a1a1a] border border-gray-800 rounded-t-lg shadow-2xl flex flex-col">
+            <div className="flex justify-between items-center px-3 py-2 border-b border-gray-800 bg-[#1a1a1a] rounded-t-lg">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="font-semibold text-sm text-white truncate max-w-[150px]">
                   {chat.name}
                 </span>
               </div>
-              <button className="close-btn" onClick={() => closeChat(chat.id)}>
-                ✕
-              </button>
+              <div className="flex gap-2">
+                <button className="text-gray-400 hover:bg-gray-800 p-1 rounded transition-colors text-xs">━</button>
+                <button className="text-gray-400 hover:bg-gray-800 p-1 rounded transition-colors text-xs" onClick={() => closeChat(chat.id)}>✕</button>
+              </div>
             </div>
-            <div className="message-list">
+            <div className="flex-1 p-3 overflow-y-auto flex flex-col gap-2 bg-[#121212]">
               {chatHistories[chat.id]?.map((msg, index) => (
-                <div key={index} className={`msg-bubble msg-${msg.type}`}>
+                <div 
+                  key={index} 
+                  className={`max-w-[85%] p-2 rounded-lg text-xs leading-normal ${
+                    msg.type === "inbound" 
+                      ? "bg-[#2a2a2a] text-gray-200 self-start border border-gray-700" 
+                      : "bg-blue-600 text-white self-end"
+                  }`}
+                >
                   {msg.text}
                 </div>
               ))}
             </div>
-            <div className="chat-input-area">
+            <div className="p-2 border-t border-gray-800 bg-[#1a1a1a]">
               <input
                 type="text"
-                placeholder="Write a message..."
+                placeholder="ส่งข้อความ..."
+                className="w-full text-xs bg-[#333333] border border-transparent focus:border-gray-600 rounded px-3 py-2 outline-none text-white"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     handleSendMessage(chat.id, e.target.value);
@@ -162,6 +140,7 @@ export default function Layout() {
         ))}
         <ChatBar contacts={contacts} onUserClick={openChat} />
       </div>
+
     </div>
   );
 }

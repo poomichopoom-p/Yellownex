@@ -1,18 +1,17 @@
 import StartPost from "../Components/StartPost.jsx";
 import Post01 from "../Components/01_PostCard.jsx";
-import Post02 from "../Components/02_CommentSection.jsx";
-import Post03 from "../Components/03_PostFeed.jsx";
+import { postsData } from "../data/mockData.js";
 
 export default function Home() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex justify-center">
       {/* Start Post */}
       <StartPost />
 
-      {/* Posts Feed */}
-      <Post01 />
-      <Post02 />
-      <Post03 />
+      {/* Posts Feed - ใช้ข้อมูลจาก mockData */}
+      {postsData.map((post) => (
+        <Post01 key={post.id} post={post} />
+      ))}
     </div>
   );
 }
