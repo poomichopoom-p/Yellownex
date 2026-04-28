@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Yellownex Project Updates
 
 โปรเจกต์นี้ได้รับการปรับปรุงเพื่อแก้ไขข้อผิดพลาด (Errors) และอัปเกรดหน้าตา (UI) ให้มีความสวยงาม ทันสมัย และใช้งานได้ดียิ่งขึ้น โดยใช้เทคโนโลยีหลักเป็น React และ Tailwind CSS
@@ -36,3 +37,44 @@
 
 ---
 *บันทึกโดย Gemini CLI - 28 เมษายน 2026*
+=======
+# Yellownex Project Overview
+
+Yellownex is a professional social media platform clone (inspired by LinkedIn) built with modern web technologies.
+
+## Tech Stack
+- **Frontend Framework:** React 19
+- **Routing:** React Router DOM v7
+- **Styling:** Tailwind CSS v4 (with `@tailwindcss/vite`)
+- **Icons:** Lucide-React
+- **Build Tool:** Vite
+
+## Project Structure
+- `src/Components/`: Reusable UI components.
+  - `Layout.jsx`: The main layout wrapper including Navbar, Sidebars, and the Messaging system.
+  - `01_PostCard.jsx`: Handles individual post rendering, including likes and interactions.
+  - `02_CommentSection.jsx`: Manages the display and submission of comments within a post.
+  - `03_PostFeed.jsx`: Renders a list of PostCards based on provided data.
+  - `SideBar.jsx`: Left-side profile summary and navigation menu.
+  - `ChatBar.jsx` & Messaging System: Bottom-right floating chat interface.
+  - `StartPost.jsx`: Component for creating new posts.
+  - `SuggestedPeople.jsx`: Right-side recommendations.
+- `src/Page/`: Main page components.
+  - `Home.jsx`: The primary feed page.
+- `src/mockData.js/`: Directory containing static data for prototyping.
+  - `Data.js`: User/Contact profile data.
+  - `postsData.js`: Feed post data including authors, content, and comments.
+
+## Key Features & Logic
+1.  **Layout & Routing:** Uses `createBrowserRouter` for navigation. The `Layout` component wraps the entire app, providing a consistent Navbar and Sidebar experience.
+2.  **State Management:**
+    -   `Layout.jsx` manages `activeChats` and `chatHistories` for the messaging system.
+    -   `01_PostCard.jsx` manages local like state and expansion of long text.
+    -   `02_CommentSection.jsx` manages local comment list state.
+3.  **Messaging System:** A dynamic chat interface that allows opening/closing chat windows and sending messages.
+4.  **Responsive Design:** Utilizes Tailwind CSS grid and flexbox for a responsive layout (Sidebar hides on smaller screens).
+
+## Recent Updates
+- Created `src/mockData.js/postsData.js` to provide structured data for the post feed, including author details, post content, images, and nested comments.
+- Mapped the data structure to match the props expected by `01_PostCard.jsx`, `02_CommentSection.jsx`, and `03_PostFeed.jsx`.
+>>>>>>> 10f0d6b (No_config)

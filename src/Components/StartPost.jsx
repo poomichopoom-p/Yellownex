@@ -27,7 +27,7 @@ function StartPost() {
             {/* TOP ROW: User Icon and Input */}
             <div className="flex gap-2 items-start mb-3">
                 <img
-                    src="https://via.placeholder.com/50"
+                    src="https://media.printler.com/media/photo/185186.jpg"
                     alt="User"
                     className="w-12 h-12 rounded-full object-cover mt-1"
                 />

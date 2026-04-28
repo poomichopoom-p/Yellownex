@@ -1,6 +1,8 @@
 import StartPost from "../Components/StartPost.jsx";
-import Post01 from "../Components/01_PostCard.jsx";
+
 import { postsData } from "../data/mockData.js";
+
+import PostFeed from "../Components/03_PostFeed.jsx";
 
 export default function Home() {
   return (
@@ -10,8 +12,10 @@ export default function Home() {
 
       {/* Posts Feed - ใช้ข้อมูลจาก mockData */}
       {postsData.map((post) => (
-        <Post01 key={post.id} post={post} />
+        <PostFeed key={post.id} post={post} />
       ))}
+      {/* Posts Feed */}
+      <PostFeed />
     </div>
   );
 }
